@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Log Analyzer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1100px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            letter-spacing: 2px;
+        }
+
+        .upload-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            background: #1c1c1c;
+            border: none;
+            color: white;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #00c6ff, #0072ff);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.07);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .summary {
+            border-left: 5px solid #00ffcc;
+        }
+
+        .analysis {
+            border-left: 5px solid #ff4d6d;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🚀 AI-Powered DevOps Log Analyzer</h1>
+
+    <div class="upload-section">
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="logfile" required>
+            <button type="submit">Analyze Logs</button>
+        </form>
+    </div>
+
+    {% if log_summary %}
+    <div class="card summary">
+        <h3>📊 Log Summary</h3>
+        <pre>{{ log_summary }}</pre>
+    </div>
+    {% endif %}
+
+    {% if ai_response %}
+    <div class="card analysis">
+        <h3>🤖 AI Root Cause Analysis</h3>
+        <pre>{{ ai_response }}</pre>
+    </div>
+    {% endif %}
+
+    <div class="footer">
+        Built with Flask + nvidia-nemotron-nano-9b-v2 + LLM | DevOps AI Project
+    </div>
+</div>
+
+</body>
+</html>
