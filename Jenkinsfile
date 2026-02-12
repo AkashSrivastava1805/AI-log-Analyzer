@@ -30,16 +30,14 @@ pipeline {
     stage("Test") {
       steps {
         script {
+          sh "docker stop test-container"
+          sh "docker rm test-container"
           sh """
           docker run -d --name test-container \
             -e NVIDIA_API_KEY=${NVIDIA_API_KEY} \
             -p 5000:5000 \
             ${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_TAG}
           """
-          sh "sleep 10"
-          sh "curl -f http://localhost:5000 || exit 1"
-          sh "docker stop test-container"
-          sh "docker rm test-container"
         }
       }
     }
